@@ -6,7 +6,7 @@ A short member guide to voting on the Redbelly DAO governance platform: how to v
 
 | Brief item | File |
 |---|---|
-| 1. The guide | `index.html` (web page) and `guide.pdf` (6 pages, printed from the same page) |
+| 1. The guide | `index.html` (web page) and `guide.pdf` (6 pages, printed from the same page). The PDF also opens inside the page with **Read PDF**, or directly at `/#read-pdf` |
 | 2. Diagrams as images, placed in the guide | `diagrams/*.png` (2x) and `diagrams/*.svg`, inlined in sections 01, 03 and 05 |
 | 3. Editable source of the diagrams | `diagrams/*.svg`, hand-written SVG. See `diagrams/README.md` |
 | Evidence for every rule | `SOURCES.md` |
@@ -38,5 +38,8 @@ Static files, no build step. On Vercel: Add New, Project, import the repository,
 - `node tools/render.js` exports the diagram PNGs and prints `guide.pdf` (needs Node and Playwright with Chromium).
 
 ## Brand
+
+The favicon is `assets/dao-mark.svg`: the DAO mark traced to vector from the kit's icon, with its background removed. It switches to light ink when the browser is in dark mode, the same way the kit pairs dark-ink and light-ink logos. `assets/icon.png` is a transparent PNG fallback.
+
 
 Built to the Task Board brand kit: Be Vietnam Pro and JetBrains Mono, the single brand red, slate surfaces, 4 and 8 px radii, tonal depth, dark by default with a light theme, no em dashes and no emoji. Logo files are the kit's own `dao-logo-on-dark.png` and `dao-logo-on-light.png`, scaled by height.
