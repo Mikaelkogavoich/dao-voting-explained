@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 562" width="1000" height="562" role="img" aria-labelledby="d2-title d2-desc">
+  <title id="d2-title">When eligibility is checked</title>
+  <desc id="d2-desc">A timeline for one proposal. Wallet A is enabled before the snapshot block. The snapshot block is recorded, and eligibility is read at that block. Voting opens 15 to 162 seconds later. Wallet B is enabled while voting is open. Result: wallet A is eligible and has one vote on this proposal. Wallet B is not eligible on this proposal, and can vote on proposals whose snapshot comes after it was enabled.</desc>
+  <style>
+    .dg-bg{fill:var(--dg-bg,#0c1317)}
+    .dg-card{fill:var(--dg-card,#141f26);stroke:var(--dg-edge,#263641);stroke-width:1.5}
+    .dg-band{fill:var(--dg-band,#111a20)}
+    .dg-win{fill:var(--dg-steel,#1d3140)}
+    .dg-t{font-family:'Be Vietnam Pro',ui-sans-serif,system-ui,sans-serif;fill:var(--dg-ink,#f1f5f8)}
+    .dg-m{font-family:'JetBrains Mono',ui-monospace,monospace}
+    .dg-mut{fill:var(--dg-muted,#8fa1ad)}
+    .dg-acc{fill:var(--dg-accent,#ffb3ae)}
+    .dg-ok{fill:var(--dg-ok,#86EFAC)}
+    .dg-warn{fill:var(--dg-warn,#FCD34D)}
+    .dg-axis{stroke:var(--dg-muted,#8fa1ad);stroke-width:2;fill:none}
+    .dg-head{fill:var(--dg-muted,#8fa1ad)}
+  </style>
+  <defs>
+    <marker id="d2-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" class="dg-head"/></marker>
+  </defs>
+
+  <rect class="dg-bg" width="1000" height="562" rx="8"/>
+  <text class="dg-t" x="40" y="54" font-size="24" font-weight="700">When eligibility is checked</text>
+  <text class="dg-t dg-mut" x="40" y="82" font-size="16">Each proposal reads eligibility once, at its snapshot block. Later changes do not count for it.</text>
+
+  <!-- voting window -->
+  <rect class="dg-win" x="470" y="154" width="430" height="190" rx="4"/>
+  <text class="dg-t dg-m dg-mut" x="486" y="178" font-size="13" font-weight="500" letter-spacing="1">VOTING OPEN</text>
+
+  <!-- axis -->
+  <path class="dg-axis" d="M40 284 H950" marker-end="url(#d2-ah)"/>
+  <text class="dg-t dg-m dg-mut" x="950" y="312" font-size="12" text-anchor="end" letter-spacing="1">TIME</text>
+
+  <!-- wallet A -->
+  <circle cx="170" cy="284" r="9" class="dg-ok"/>
+  <text class="dg-t" x="170" y="248" font-size="16" font-weight="600" text-anchor="middle">Wallet A enabled</text>
+
+  <!-- snapshot -->
+  <path d="M350 146 V350" stroke="#EF5350" stroke-width="3"/>
+  <text class="dg-t dg-acc" x="350" y="138" font-size="17" font-weight="700" text-anchor="middle">Snapshot block</text>
+  <text class="dg-t dg-m dg-acc" x="350" y="372" font-size="12" font-weight="500" text-anchor="middle" letter-spacing="0.6">ELIGIBILITY READ HERE</text>
+
+  <!-- gap bracket -->
+  <path class="dg-axis" d="M354 256 V248 H466 V256" style="stroke-width:1.5"/>
+  <text class="dg-t dg-m dg-mut" x="410" y="238" font-size="12" text-anchor="middle">15 TO 162 S</text>
+
+  <!-- opens / closes -->
+  <path d="M470 270 V298" class="dg-axis"/>
+  <text class="dg-t" x="478" y="320" font-size="15" font-weight="600">Voting opens</text>
+  <path d="M900 270 V298" class="dg-axis"/>
+  <text class="dg-t" x="892" y="260" font-size="15" font-weight="600" text-anchor="end">Voting closes</text>
+
+  <!-- wallet B -->
+  <circle cx="660" cy="284" r="9" class="dg-warn"/>
+  <text class="dg-t" x="660" y="248" font-size="16" font-weight="600" text-anchor="middle">Wallet B enabled</text>
+
+  <!-- results -->
+  <rect class="dg-card" x="40" y="406" width="440" height="104" rx="8"/>
+  <text class="dg-t dg-m dg-ok" x="62" y="438" font-size="14" font-weight="500">✓ WALLET A</text>
+  <text class="dg-t" x="62" y="468" font-size="17" font-weight="600">Eligible: one vote on this proposal</text>
+
+  <rect class="dg-card" x="500" y="406" width="460" height="104" rx="8"/>
+  <text class="dg-t dg-m dg-acc" x="522" y="438" font-size="14" font-weight="500">✕ WALLET B</text>
+  <text class="dg-t" x="522" y="468" font-size="17" font-weight="600">Not eligible on this proposal.</text>
+  <text class="dg-t dg-mut" x="522" y="488" font-size="14">Eligible on proposals whose snapshot comes after it.</text>
+
+  <text class="dg-t dg-m dg-mut" x="40" y="542" font-size="12" letter-spacing="0.6">LAST VERIFIED 25 OCT 2026 · GAP MEASURED ON ALL 10 PROPOSALS PUBLISHED ON THE PLATFORM</text>
+</svg>

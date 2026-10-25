@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How DAO Voting Works Now</title>
+<meta name="description" content="A short member guide to voting on the Redbelly DAO governance platform: how to vote, when eligibility is checked, and how many votes you get.">
+<link rel="icon" href="assets/icon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  // Dark is the brand default. A saved choice wins; print always uses light.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('dvg-theme'); } catch (e) {}
+    if (location.search.indexOf('print') > -1) t = 'light';
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+/* Task Board brand tokens (taskboard.redbellydao.network/brand) */
+:root,[data-theme="dark"]{
+  color-scheme:dark;
+  --surface:#0c1317;--surface-low:#111a20;--surface-container:#17222a;--surface-high:#223039;
+  --surface-slate:#141f26;--surface-steel:#1d3140;--panel-edge:#263641;
+  --on-surface:#f1f5f8;--on-surface-variant:#c2ced6;--outline:#8fa1ad;--outline-variant:#34444f;
+  --brand:#EF5350;--brand-hover:#f95a56;--on-brand:#ffffff;--primary:#ffb3ae;--ok:#86EFAC;--warn:#FCD34D;
+  --dg-bg:#0c1317;--dg-band:#111a20;--dg-card:#141f26;--dg-edge:#263641;--dg-steel:#1d3140;
+  --dg-ink:#f1f5f8;--dg-muted:#8fa1ad;--dg-accent:#ffb3ae;--dg-ok:#86EFAC;--dg-warn:#FCD34D;
+}
+[data-theme="light"]{
+  color-scheme:light;
+  --surface:#EDF1F4;--surface-low:#F4F6F8;--surface-container:#E6EBEF;--surface-high:#DAE1E7;
+  --surface-slate:#FFFFFF;--surface-steel:#DDE6ED;--panel-edge:#D3DBE1;
+  --on-surface:#0F1A22;--on-surface-variant:#394853;--outline:#596975;--outline-variant:#C3CDD4;
+  --brand:#EF5350;--brand-hover:#D93E3B;--primary:#B3272A;--ok:#15803D;--warn:#A16207;
+  --dg-bg:#FFFFFF;--dg-band:#F4F6F8;--dg-card:#FFFFFF;--dg-edge:#D3DBE1;--dg-steel:#DDE6ED;
+  --dg-ink:#0F1A22;--dg-muted:#596975;--dg-accent:#B3272A;--dg-ok:#15803D;--dg-warn:#A16207;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:76px}
+body{margin:0;background:var(--surface);color:var(--on-surface);font:400 17px/1.6 "Be Vietnam Pro",ui-sans-serif,system-ui,sans-serif}
+a{color:var(--primary);text-underline-offset:3px}
+.mono,code,kbd{font-family:"JetBrains Mono",ui-monospace,monospace}
+code{font-size:.88em;background:var(--surface-container);border:1px solid var(--panel-edge);border-radius:4px;padding:1px 5px;overflow-wrap:anywhere}
+.ui{font-weight:600;color:var(--on-surface)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:12px;z-index:40;background:var(--surface-slate);padding:8px 12px;border-radius:4px}
+.shell{max-width:1280px;margin:0 auto;padding:0 16px}
+@media(min-width:900px){.shell{padding:0 64px}}
+.col{max-width:72ch}
+
+/* header */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--panel-edge)}
+.top .shell{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--on-surface);font-weight:600;font-size:15px;white-space:nowrap}
+.brand img{height:40px;width:auto;display:block}
+.logo-light{display:none!important}[data-theme="light"] .logo-dark{display:none!important}[data-theme="light"] .logo-light{display:block!important}
+.brand span{border-left:1px solid var(--outline-variant);padding-left:12px;color:var(--on-surface-variant)}
+.top nav{margin-left:auto;display:flex;gap:2px}
+.top nav a{color:var(--on-surface-variant);text-decoration:none;font-size:14px;padding:8px 10px;border-radius:4px}
+.top nav a:hover{background:var(--surface-container);color:var(--on-surface)}
+.icon-btn{flex:none;width:40px;height:40px;border-radius:4px;border:1px solid var(--outline-variant);background:transparent;color:var(--on-surface);cursor:pointer;display:grid;place-items:center}
+.icon-btn:hover{border-color:var(--brand)}
+@media(max-width:860px){.top nav{display:none}.icon-btn{margin-left:auto}.brand span{display:none}}
+
+/* hero band: steel in both themes, like the Task Board */
+.hero{background:#1d3140;color:#f1f5f8;border-bottom:1px solid #263641}
+.hero .shell{padding-top:56px;padding-bottom:48px}
+.caps{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.hero .caps{color:#ffb3ae}
+h1{font-size:clamp(34px,6vw,48px);line-height:1.08;letter-spacing:-.02em;font-weight:700;margin:10px 0 14px}
+.lede{font-size:18px;line-height:1.55;color:#c2ced6;max-width:62ch;margin:0 0 22px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.05em;color:#c2ced6;margin-bottom:26px}
+.meta .dot{display:inline-block;width:8px;height:8px;border-radius:9999px;background:#86EFAC;margin-right:8px;vertical-align:1px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15px;font-weight:600;padding:11px 18px;border-radius:4px;text-decoration:none;border:1px solid #34444f;color:#f1f5f8;background:transparent;white-space:nowrap}
+.btn:hover{border-color:#ffb3ae}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.primary:hover{background:var(--brand-hover)}
+.btn svg{width:16px;height:16px}
+
+/* answers */
+.answers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:-1px 0 0;padding:40px 0 8px}
+.ans{background:var(--surface-slate);border:1px solid var(--panel-edge);border-radius:8px;padding:18px 18px 16px}
+.ans h2{font-size:15px;font-weight:600;color:var(--primary);margin:0 0 10px;padding-bottom:10px;border-bottom:1px solid var(--panel-edge)}
+.ans p{margin:0;font-size:16px;line-height:1.5}
+@media(max-width:1000px){.answers{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.answers{grid-template-columns:1fr}}
+
+/* sections */
+section{padding:48px 0 0}
+.num{font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:500;letter-spacing:.05em;color:var(--primary)}
+h2.sec{font-size:clamp(26px,4vw,32px);line-height:1.2;letter-spacing:-.01em;font-weight:600;margin:6px 0 16px}
+h3{font-size:19px;font-weight:600;margin:28px 0 8px}
+p{margin:0 0 14px}
+.steps{list-style:none;counter-reset:s;margin:0 0 18px;padding:0}
+.steps>li{counter-increment:s;position:relative;padding:0 0 14px 48px}
+.steps>li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:500;color:var(--primary);border:1px solid var(--panel-edge);background:var(--surface-slate);border-radius:4px;padding:2px 6px}
+.note{background:var(--surface-slate);border:1px solid var(--panel-edge);border-left:3px solid var(--brand);border-radius:4px 8px 8px 4px;padding:14px 16px;margin:6px 0 18px}
+.note p:last-child{margin:0}
+.note .caps{color:var(--primary);display:block;margin-bottom:4px}
+blockquote{margin:0 0 16px;padding:12px 16px;border-left:3px solid var(--outline-variant);background:var(--surface-low);border-radius:0 4px 4px 0;color:var(--on-surface-variant)}
+blockquote p{margin:0}
+figure{margin:24px 0 8px;max-width:1000px}
+.fig-scroll{overflow-x:auto;border:1px solid var(--panel-edge);border-radius:8px;background:var(--dg-bg)}
+.fig-scroll svg{display:block;width:100%;height:auto;min-width:640px}
+figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;font-size:14px;color:var(--outline);margin-top:10px}
+figcaption a{font-family:"JetBrains Mono",monospace;font-size:13px}
+
+/* tables */
+.tw{overflow-x:auto;border:1px solid var(--panel-edge);border-radius:8px;background:var(--surface-slate);margin:8px 0 16px}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:620px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--panel-edge)}
+tr:last-child td{border-bottom:0}
+th{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--outline);background:var(--surface-low)}
+td:first-child{width:36%}
+tr.hit td{background:color-mix(in srgb,var(--brand) 12%,transparent)}
+.picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:4px 0 6px}
+.picker label{font-weight:600;font-size:15px}
+select{font:inherit;font-size:15px;color:var(--on-surface);background:var(--surface-slate);border:1px solid var(--outline-variant);border-radius:4px;padding:9px 12px;max-width:100%}
+select:focus{border-color:var(--brand);outline:2px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+.answer{min-height:0}
+.answer:not(:empty){margin:8px 0 6px;padding:12px 14px;border:1px solid var(--brand);border-radius:8px;background:var(--surface-slate)}
+
+/* limits */
+.limits{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.limits li{background:var(--surface-slate);border:1px solid var(--panel-edge);border-radius:8px;padding:14px 16px 14px 46px;position:relative}
+.limits li::before{content:"";position:absolute;left:18px;top:22px;width:8px;height:8px;border-radius:9999px;background:var(--warn)}
+.limits b{display:block;margin-bottom:2px}
+
+/* glossary + sources */
+dl.gloss{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:0;margin:0;border-top:1px solid var(--panel-edge)}
+dl.gloss dt,dl.gloss dd{padding:12px 0;border-bottom:1px solid var(--panel-edge);margin:0}
+dl.gloss dt{font-weight:600;padding-right:16px}
+@media(max-width:560px){dl.gloss{grid-template-columns:1fr}dl.gloss dt{border-bottom:0;padding-bottom:0}}
+.tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:500;letter-spacing:.05em;color:var(--on-surface-variant);border:1px solid var(--outline-variant);border-radius:4px;padding:1px 6px;margin:0 4px 4px 0;white-space:nowrap}
+footer{margin-top:64px;border-top:1px solid var(--panel-edge);background:var(--surface-low)}
+footer .shell{padding-top:24px;padding-bottom:32px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:14px;color:var(--outline)}
+
+@media print{
+  .top,.btns,.picker,.answer,.no-print,#sources .tw{display:none!important}
+  body{font-size:9.5pt;line-height:1.45;background:#fff}
+  .hero{background:#fff;color:#0F1A22;border:0}.hero .shell{padding:0 0 4px}.lede,.meta{color:#394853}.hero .caps{color:#B3272A}
+  h1{font-size:24pt;margin:4px 0 8px}.lede{font-size:10.5pt;margin-bottom:8px}.meta{margin-bottom:0;font-size:8pt}
+  .shell{padding:0!important}.col{max-width:none}
+  section{padding-top:12px}
+  .num{break-after:avoid;page-break-after:avoid;font-size:8pt}
+  h2.sec{font-size:15pt;margin:2px 0 8px;break-after:avoid}
+  h3{font-size:11pt;margin:12px 0 4px;break-after:avoid}
+  p{margin:0 0 8px}.steps>li{padding:0 0 6px 40px}
+  figure{margin:10px 0 4px;max-width:none}
+  figure,.ans,.note,.limits li,tr,blockquote{break-inside:avoid}
+  .fig-scroll{border:1px solid #D3DBE1}.fig-scroll svg{min-width:0}
+  figcaption{font-size:8pt;margin-top:4px}
+  .answers{grid-template-columns:repeat(4,1fr);gap:8px;padding-top:10px}.ans{padding:10px}.ans h2{font-size:9.5pt;margin-bottom:6px;padding-bottom:6px}.ans p{font-size:9pt}
+  .note{padding:8px 12px;margin:4px 0 10px}
+  .tw{margin:4px 0 8px}table{min-width:0;font-size:8.5pt}th,td{padding:6px 8px}
+  .limits{gap:6px}.limits li{padding:7px 10px 7px 28px}.limits li::before{left:12px;top:14px}
+  dl.gloss dt,dl.gloss dd{padding:5px 0}
+  a{color:#B3272A}
+  footer{margin-top:12px;background:#fff}footer .shell{padding:8px 0 0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the guide</a>
+
+<header class="top">
+  <div class="shell">
+    <a class="brand" href="#top" aria-label="Redbelly DAO voting guide, back to top">
+      <img class="logo-dark" src="assets/dao-logo-on-dark.png" alt="Redbelly DAO" width="56" height="40">
+      <img class="logo-light" src="assets/dao-logo-on-light.png" alt="Redbelly DAO" width="56" height="40">
+      <span>Voting guide</span>
+    </a>
+    <nav aria-label="Guide sections">
+      <a href="#vote">How to vote</a><a href="#when">Eligibility</a><a href="#votes">Your votes</a><a href="#cant">Can't vote?</a><a href="#limits">Known limits</a>
+    </nav>
+    <button class="icon-btn" id="theme" type="button" aria-label="Switch between dark and light theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="shell">
+    <div class="caps">Redbelly DAO member guide</div>
+    <h1>How DAO voting works now</h1>
+    <p class="lede">DAO votes now happen on the governance platform, which the team approved for continued use on 22 September 2026. Snapshot is no longer used. This guide covers the rules as the platform applies them today.</p>
+    <div class="meta"><span><span class="dot" aria-hidden="true"></span>LAST VERIFIED {{VERIFIED_CAPS}}</span><span>{{READ_MIN}} MIN READ</span><span>{{N_DIAGRAMS}} DIAGRAMS</span></div>
+    <div class="btns">
+      <a class="btn primary" href="https://redbelly-governance.vercel.app/" target="_blank" rel="noopener">Open the platform</a>
+      <a class="btn" href="guide.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<main id="main" class="shell">
+  <div class="answers" aria-label="Short answers">
+    <div class="ans"><h2>Can I vote?</h2><p>Yes, if your wallet was enabled at Redbelly Access before the proposal's snapshot was taken.</p></div>
+    <div class="ans"><h2>When is it checked?</h2><p>Once per proposal, at its snapshot block. That block is recorded when the proposal is published.</p></div>
+    <div class="ans"><h2>How many votes?</h2><p>One per verified wallet on Verified identity proposals. The vote panel shows your number before you sign.</p></div>
+    <div class="ans"><h2>What does it cost?</h2><p>Nothing. A vote is a signed message, not a transaction. You pay no gas.</p></div>
+  </div>
+
+  <section id="first">
+    <div class="num">01</div>
+    <h2 class="sec">Before your first vote</h2>
+    <div class="col">
+      <p>Only wallets that hold the Redbelly Network Access Credential can vote. The voting platform calls it a Receptor credential, after Redbelly's identity system. You get it once, at <a href="https://access.redbelly.network/" target="_blank" rel="noopener">Redbelly Access</a>:</p>
+      <ol class="steps">
+        <li><b>Connect your wallet.</b> The portal names MetaMask and Coinbase Wallet. The address you connect becomes your public address on Redbelly Network.</li>
+        <li><b>Verify your identity.</b> Averer, an accredited issuer, does the check. It is free: the issuer covers the fees.</li>
+        <li><b>Enable the account.</b> You sign a transaction in your wallet. From then on, it can vote on every proposal whose snapshot block comes after that moment. <a href="#when">Section 03</a> explains the snapshot.</li>
+      </ol>
+    </div>
+    <figure>
+      <div class="fig-scroll">{{D1}}</div>
+      <figcaption><span>Figure 1. The whole path, from verification to a counted vote.</span><span><a href="diagrams/01-path-to-vote.svg">SVG</a> · <a href="diagrams/01-path-to-vote.png">PNG</a></span></figcaption>
+    </figure>
+  </section>
+
+  <section id="vote">
+    <div class="num">02</div>
+    <h2 class="sec">How to vote, step by step</h2>
+    <div class="col">
+      <ol class="steps">
+        <li><b>Connect.</b> Open <a href="https://redbelly-governance.vercel.app/" target="_blank" rel="noopener">redbelly-governance.vercel.app</a> and press <span class="ui">Connect wallet</span>. Choose <span class="ui">Browser wallet</span>, or <span class="ui">WalletConnect</span> for a phone wallet. If you see <span class="ui">Switch to Redbelly Network</span>, press it.</li>
+        <li><b>Open a proposal.</b> Under <span class="ui">Proposals</span>, open one that is active. The <span class="ui">Cast your vote</span> panel only appears while voting is open.</li>
+        <li><b>Check the panel.</b> It should say <span class="ui">Eligible to vote</span> and show your voting power. Any other message is explained in <a href="#cant">section 06</a>.</li>
+        <li><b>Choose.</b> Pick your option. You can add a reason. It is optional, and it is saved with your ballot where anyone can read it.</li>
+        <li><b>Review and sign.</b> Press <span class="ui">Review and sign</span>. The <span class="ui">Confirm your vote</span> box shows your choice, voting power and reason. Press <span class="ui">Sign in wallet</span> and approve the request in your wallet.</li>
+        <li><b>Done.</b> The panel shows <span class="ui">Vote recorded</span>. A <span class="ui">View IPFS receipt</span> link appears once the receipt is published. Until then the panel says the receipt is not available yet, and your vote is still recorded.</li>
+      </ol>
+      <div class="note"><span class="caps">Changed your mind?</span><p>Until voting closes, press <span class="ui">Change vote</span> and sign again. The new ballot replaces the old one.</p></div>
+      <div class="note"><span class="caps">What you sign</span><p>A message with your address, the proposal, your choice, your reason and a timestamp. There is no amount and no recipient, so nothing can leave your wallet. If anything asks you to approve a token or pay gas to vote, it is not the voting platform. Its <a href="https://redbelly-governance.vercel.app/safety" target="_blank" rel="noopener">Wallet safety</a> page shows the exact message.</p></div>
+    </div>
+  </section>
+
+  <section id="when">
+    <div class="num">03</div>
+    <h2 class="sec">When eligibility is checked</h2>
+    <div class="col">
+      <p>Every proposal has a snapshot block: a block on Redbelly Network that the platform records when the proposal is published. Voting opens at publication and runs for the number of days its author set.</p>
+      <p>The platform checks your wallet once per proposal, as it was at that block. In its own words:</p>
+      <blockquote><p>"Eligibility is based on the proposal snapshot. Changes after that snapshot do not add voting power."</p></blockquote>
+      <p>The snapshot block comes slightly before voting opens. On the {{N_NATIVE}} proposals published on the platform so far, the gap was {{GAP_MIN}} to {{GAP_MAX}} seconds.</p>
+    </div>
+    <figure>
+      <div class="fig-scroll">{{D2}}</div>
+      <figcaption><span>Figure 2. One proposal, one snapshot. Wallet B was enabled too late for this proposal only.</span><span><a href="diagrams/02-snapshot-timeline.svg">SVG</a> · <a href="diagrams/02-snapshot-timeline.png">PNG</a></span></figcaption>
+    </figure>
+  </section>
+
+  <section id="late">
+    <div class="num">04</div>
+    <h2 class="sec">Why a wallet verified after a proposal opens cannot vote on it</h2>
+    <div class="col">
+      <p>A wallet enabled after the snapshot block did not hold the credential at that block. For that proposal, the platform reads it as unverified, and its voting power is 0.</p>
+      <p>Nothing done during the vote changes this, because the check is tied to a block that is already in the past. The rule is the same for every wallet, so the list of eligible wallets stays fixed from the first ballot to the last.</p>
+      <div class="note"><span class="caps">Read this before you worry</span><p>The message you see is <span class="ui">This address does not hold a Receptor credential on Redbelly</span>, even if your wallet is verified today. On this proposal it means "not verified at the snapshot". We tested this with a wallet enabled 3 blocks after a snapshot: the platform lists it as verified, and shows that message for the proposal.</p></div>
+      <p>The wallet is not blocked. It can vote on every proposal whose snapshot comes after it was enabled.</p>
+    </div>
+  </section>
+
+  <section id="votes">
+    <div class="num">05</div>
+    <h2 class="sec">How many votes you get</h2>
+    <div class="col">
+      <h3>One vote per verified account</h3>
+      <p>Every proposal published on the platform today is open to verified wallets only. The DAO's votes since the platform was approved use the <span class="ui">Verified identity</span> setting: each wallet that was verified at the snapshot gets exactly 1 vote, however much RBNT it holds.</p>
+      <p>The platform also supports measuring power by <span class="ui">RBNT balance</span>. On such a proposal, your power is the RBNT your wallet held at the snapshot block, and only verified wallets can vote. Either way, the vote panel shows your voting power before you sign.</p>
+      <p>Some proposals let you approve several options, split your vote across options, or rank them. The panel shows how the proposal you open works.</p>
+      <h3>Several wallets under one verification</h3>
+      <p>After your first wallet is enabled, Redbelly Access lets you add more accounts linked to the same identity. The platform treats each enabled wallet as a separate verified address:</p>
+      <ul>
+        <li>Each wallet that was enabled at the snapshot can cast 1 vote on that proposal.</li>
+        <li>A wallet linked after the snapshot cannot vote on that proposal.</li>
+        <li>The <span class="ui">Voters</span> and <span class="ui">Identity quorum</span> numbers count addresses. The platform states that verified addresses "are not necessarily unique people", and that "one credential currently enables up to about 10 addresses".</li>
+      </ul>
+    </div>
+    <figure>
+      <div class="fig-scroll">{{D3}}</div>
+      <figcaption><span>Figure 3. One identity, three wallets, one proposal.</span><span><a href="diagrams/03-wallets-and-votes.svg">SVG</a> · <a href="diagrams/03-wallets-and-votes.png">PNG</a></span></figcaption>
+    </figure>
+  </section>
+
+  <section id="cant">
+    <div class="num">06</div>
+    <h2 class="sec">Why can't I vote?</h2>
+    <div class="col">
+      <p>Find the message the platform shows you. The vote panel uses these exact words.</p>
+      <div class="picker no-print">
+        <label for="msg">What do you see?</label>
+        <select id="msg">
+          <option value="">Choose a message</option>
+          {{OPTIONS}}
+        </select>
+      </div>
+      <div class="answer" id="answer" role="status" aria-live="polite"></div>
+    </div>
+    <div class="tw col" style="max-width:none">
+      <table id="cant-table">
+        <thead><tr><th>You see</th><th>What it means</th><th>What to do</th></tr></thead>
+        <tbody>{{ROWS}}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="limits">
+    <div class="num">07</div>
+    <h2 class="sec">Known limits</h2>
+    <div class="col">
+      <p>These are how the platform works today. Knowing them saves a lot of confusion.</p>
+      <ul class="limits">
+        <li><b>Addresses, not people.</b> One credential currently enables up to about 10 addresses, according to the platform. Vote counts and the identity quorum count verified addresses, not unique people.</li>
+        <li><b>No late entry.</b> A wallet enabled after a proposal's snapshot cannot vote on it, even by a few minutes. The snapshot can be up to {{GAP_MAX}} seconds before voting opens.</li>
+        <li><b>The not-eligible message does not mention the snapshot.</b> A wallet verified after the snapshot is told it does not hold a Receptor credential, although it holds one now.</li>
+        <li><b>Ballots are signed messages, not transactions.</b> The platform stores them. Each ballot carries your signature, so anyone can check it, and an IPFS receipt is published for it. The receipt can appear after the vote is recorded.</li>
+        <li><b>Two wallets named for access.</b> Redbelly Access names MetaMask and Coinbase Wallet. The voting platform itself connects through a browser wallet or WalletConnect.</li>
+        <li><b>Settings vary by proposal.</b> Each proposal's author sets its ballot type, voting power, quorum and length. A proposal cannot be edited once it is open.</li>
+        <li><b>Older results used older rules.</b> Proposals marked imported came from Snapshot and were counted under that setup. Their numbers are not comparable with one vote per verified wallet.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="words">
+    <div class="num">08</div>
+    <h2 class="sec">Words used here</h2>
+    <dl class="gloss col">
+      <dt>Snapshot block</dt><dd>The block a proposal records when it is published. Eligibility and voting power are read at this block.</dd>
+      <dt>Receptor credential</dt><dd>The platform's name for the Redbelly Network Access Credential, issued after identity verification. Receptor is Redbelly's identity and credential system.</dd>
+      <dt>Verified wallet</dt><dd>A wallet enabled at Redbelly Access, so it holds that credential. "Enabled" and "verified" mean the same here.</dd>
+      <dt>Signature</dt><dd>Your wallet's proof that a message came from you. Signing is free and moves nothing.</dd>
+      <dt>IPFS receipt</dt><dd>A public copy of your signed ballot that anyone can inspect.</dd>
+      <dt>Quorum</dt><dd>The minimum voting power a proposal needs. <b>Identity quorum</b> is the minimum number of verified addresses that must vote.</dd>
+    </dl>
+  </section>
+
+  <section id="sources">
+    <div class="num">09</div>
+    <h2 class="sec">How each rule was checked</h2>
+    <div class="col">
+      <p>Every rule here was checked against the live platform on {{VERIFIED}}: its interface text, its public API, its published code and Redbelly Network itself. <a href="SOURCES.md">SOURCES.md</a> has the exact evidence, and <code>verify/check.py --live</code> repeats every check.</p>
+      <p class="mono" style="font-size:14px;color:var(--on-surface-variant)">{{CHECK_LINE}}</p>
+    </div>
+    <div class="tw col" style="max-width:none">
+      <table>
+        <thead><tr><th>Rule</th><th>Checked against</th></tr></thead>
+        <tbody>{{EVIDENCE}}</tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer><div class="shell"><span>How DAO voting works now. A guide for Redbelly DAO members.</span><span class="mono">LAST VERIFIED {{VERIFIED_CAPS}}</span></div></footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  document.getElementById('theme').addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('dvg-theme', next); } catch (e) {}
+  });
+  var sel = document.getElementById('msg'), out = document.getElementById('answer');
+  var rows = document.querySelectorAll('#cant-table tbody tr');
+  sel.addEventListener('change', function () {
+    out.textContent = '';
+    rows.forEach(function (r) { r.classList.toggle('hit', r.dataset.key === sel.value); });
+    var row = document.querySelector('#cant-table tr[data-key="' + sel.value + '"]');
+    if (!row) return;
+    var c = row.querySelectorAll('td');
+    var b = document.createElement('b'); b.textContent = c[1].textContent;
+    out.appendChild(b); out.appendChild(document.createTextNode(' ' + c[2].textContent));
+  });
+})();
+</script>
+</body>
+</html>

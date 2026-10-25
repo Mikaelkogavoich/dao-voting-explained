@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470" role="img" aria-labelledby="d3-title d3-desc">
+  <title id="d3-title">How several wallets under one verification are counted</title>
+  <desc id="d3-desc">One identity check at Redbelly Access can have several wallets linked to it. On a proposal that uses verified identity, each wallet that was enabled at the snapshot block counts as its own verified address with one vote. Wallet 1, enabled before the snapshot: one vote. Wallet 2, linked before the snapshot: one vote. Wallet 3, linked after the snapshot: no vote on this proposal. The platform counts verified addresses, not people. One credential currently enables up to about 10 addresses.</desc>
+  <style>
+    .dg-bg{fill:var(--dg-bg,#0c1317)}
+    .dg-card{fill:var(--dg-card,#141f26);stroke:var(--dg-edge,#263641);stroke-width:1.5}
+    .dg-band{fill:var(--dg-band,#111a20)}
+    .dg-t{font-family:'Be Vietnam Pro',ui-sans-serif,system-ui,sans-serif;fill:var(--dg-ink,#f1f5f8)}
+    .dg-m{font-family:'JetBrains Mono',ui-monospace,monospace}
+    .dg-mut{fill:var(--dg-muted,#8fa1ad)}
+    .dg-acc{fill:var(--dg-accent,#ffb3ae)}
+    .dg-ok{fill:var(--dg-ok,#86EFAC)}
+    .dg-ln{stroke:var(--dg-muted,#8fa1ad);stroke-width:2;fill:none}
+    .dg-chip{fill:var(--dg-band,#111a20);stroke:var(--dg-edge,#263641);stroke-width:1.5}
+  </style>
+
+  <rect class="dg-bg" width="1000" height="470" rx="8"/>
+  <text class="dg-t" x="40" y="54" font-size="24" font-weight="700">How several wallets are counted</text>
+  <text class="dg-t dg-mut" x="40" y="82" font-size="16">On a Verified identity proposal, each wallet enabled at the snapshot is its own verified address.</text>
+
+  <!-- identity -->
+  <rect class="dg-card" x="40" y="176" width="250" height="124" rx="8"/>
+  <text class="dg-t dg-m dg-acc" x="60" y="206" font-size="13" font-weight="500" letter-spacing="1">ONE IDENTITY CHECK</text>
+  <text class="dg-t" x="60" y="236" font-size="18" font-weight="600">Verified once</text>
+  <text class="dg-t dg-mut" x="60" y="262" font-size="14">at Redbelly Access, with</text>
+  <text class="dg-t dg-mut" x="60" y="282" font-size="14">wallets linked to it</text>
+
+  <!-- connectors -->
+  <path class="dg-ln" d="M292 238 C330 238 330 148 366 148"/>
+  <path class="dg-ln" d="M292 238 H366"/>
+  <path class="dg-ln" d="M292 238 C330 238 330 328 366 328"/>
+
+  <!-- wallets -->
+  <rect class="dg-card" x="370" y="114" width="330" height="68" rx="8"/>
+  <text class="dg-t dg-m" x="390" y="143" font-size="15" font-weight="500">Wallet 1</text>
+  <text class="dg-t dg-mut" x="390" y="167" font-size="14">enabled before the snapshot</text>
+
+  <rect class="dg-card" x="370" y="204" width="330" height="68" rx="8"/>
+  <text class="dg-t dg-m" x="390" y="233" font-size="15" font-weight="500">Wallet 2</text>
+  <text class="dg-t dg-mut" x="390" y="257" font-size="14">linked before the snapshot</text>
+
+  <rect class="dg-card" x="370" y="294" width="330" height="68" rx="8"/>
+  <text class="dg-t dg-m" x="390" y="323" font-size="15" font-weight="500">Wallet 3</text>
+  <text class="dg-t dg-mut" x="390" y="347" font-size="14">linked after the snapshot</text>
+
+  <!-- results -->
+  <path class="dg-ln" d="M702 148 H740"/><path class="dg-ln" d="M702 238 H740"/><path class="dg-ln" d="M702 328 H740"/>
+  <rect class="dg-chip" x="742" y="126" width="218" height="44" rx="4"/>
+  <text class="dg-t dg-m dg-ok" x="762" y="154" font-size="15" font-weight="500">✓ 1 VOTE</text>
+  <rect class="dg-chip" x="742" y="216" width="218" height="44" rx="4"/>
+  <text class="dg-t dg-m dg-ok" x="762" y="244" font-size="15" font-weight="500">✓ 1 VOTE</text>
+  <rect class="dg-chip" x="742" y="306" width="218" height="44" rx="4"/>
+  <text class="dg-t dg-m dg-acc" x="762" y="334" font-size="15" font-weight="500">✕ NOT THIS ONE</text>
+
+  <!-- note -->
+  <rect class="dg-band" x="40" y="384" width="920" height="54" rx="8"/>
+  <text class="dg-t" x="60" y="417" font-size="16"><tspan font-weight="600">The platform counts verified addresses, not people.</tspan><tspan class="dg-mut"> One credential currently enables up to about 10 addresses.</tspan></text>
+
+  <text class="dg-t dg-m dg-mut" x="40" y="460" font-size="12" letter-spacing="0.6">LAST VERIFIED 25 OCT 2026 · REDBELLY-GOVERNANCE.VERCEL.APP</text>
+</svg>

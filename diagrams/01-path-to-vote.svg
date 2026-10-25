@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="1000" height="650" role="img" aria-labelledby="d1-title d1-desc">
+  <title id="d1-title">From verification to a counted vote</title>
+  <desc id="d1-desc">Once, at Redbelly Access: 1 connect a wallet, 2 verify your identity with Averer, 3 enable the account so the wallet holds the access credential. Then a proposal is published and its snapshot block is recorded. On every proposal, at the governance platform: 4 connect the wallet, 5 eligibility check: was this wallet verified at the snapshot block. If yes: 6 review and sign, a signature with no gas, then 7 vote recorded with an IPFS receipt to follow. If no: not eligible for this proposal, but the wallet can vote on proposals whose snapshot comes later.</desc>
+  <style>
+    .dg-bg{fill:var(--dg-bg,#0c1317)}
+    .dg-card{fill:var(--dg-card,#141f26);stroke:var(--dg-edge,#263641);stroke-width:1.5}
+    .dg-band{fill:var(--dg-band,#111a20)}
+    .dg-t{font-family:'Be Vietnam Pro',ui-sans-serif,system-ui,sans-serif;fill:var(--dg-ink,#f1f5f8)}
+    .dg-m{font-family:'JetBrains Mono',ui-monospace,monospace}
+    .dg-mut{fill:var(--dg-muted,#8fa1ad)}
+    .dg-acc{fill:var(--dg-accent,#ffb3ae)}
+    .dg-ok{fill:var(--dg-ok,#86EFAC)}
+    .dg-ln{stroke:var(--dg-muted,#8fa1ad);stroke-width:2;fill:none}
+    .dg-lnr{stroke:#EF5350;stroke-width:2.5;fill:none}
+    .dg-head{fill:var(--dg-muted,#8fa1ad)}
+  </style>
+  <defs>
+    <marker id="d1-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" class="dg-head"/></marker>
+  </defs>
+
+  <rect class="dg-bg" width="1000" height="650" rx="8"/>
+  <text class="dg-t" x="40" y="54" font-size="24" font-weight="700">From verification to a counted vote</text>
+  <text class="dg-t dg-mut" x="40" y="82" font-size="16">Steps 1 to 3 happen once. Steps 4 to 7 happen on every proposal.</text>
+
+  <!-- Lane 1: once, at Redbelly Access -->
+  <rect class="dg-band" x="24" y="104" width="952" height="170" rx="8"/>
+  <text class="dg-t dg-m dg-mut" x="40" y="132" font-size="13" font-weight="500" letter-spacing="1">ONCE, AT REDBELLY ACCESS</text>
+  <g>
+    <rect class="dg-card" x="40" y="148" width="280" height="108" rx="8"/>
+    <text class="dg-t dg-m dg-acc" x="60" y="178" font-size="14" font-weight="500">01</text>
+    <text class="dg-t" x="60" y="208" font-size="19" font-weight="600">Connect a wallet</text>
+    <text class="dg-t dg-mut" x="60" y="234" font-size="15">MetaMask or Coinbase Wallet</text>
+  </g>
+  <path class="dg-ln" d="M322 202 H356" marker-end="url(#d1-ah)"/>
+  <g>
+    <rect class="dg-card" x="360" y="148" width="280" height="108" rx="8"/>
+    <text class="dg-t dg-m dg-acc" x="380" y="178" font-size="14" font-weight="500">02</text>
+    <text class="dg-t" x="380" y="208" font-size="19" font-weight="600">Verify your identity</text>
+    <text class="dg-t dg-mut" x="380" y="234" font-size="15">Checked by Averer, free to you</text>
+  </g>
+  <path class="dg-ln" d="M642 202 H676" marker-end="url(#d1-ah)"/>
+  <g>
+    <rect class="dg-card" x="680" y="148" width="280" height="108" rx="8"/>
+    <text class="dg-t dg-m dg-acc" x="700" y="178" font-size="14" font-weight="500">03</text>
+    <text class="dg-t" x="700" y="208" font-size="19" font-weight="600">Enable the account</text>
+    <text class="dg-t dg-mut" x="700" y="234" font-size="15">Wallet holds the credential</text>
+  </g>
+
+  <!-- Event: proposal published -->
+  <path class="dg-lnr" d="M40 306 H960"/>
+  <rect x="290" y="290" width="420" height="34" rx="4" fill="#EF5350"/>
+  <text class="dg-t" x="500" y="313" font-size="16" font-weight="600" text-anchor="middle" style="fill:#ffffff">A proposal is published: snapshot block recorded</text>
+
+  <!-- Lane 2: every proposal, at the governance platform -->
+  <rect class="dg-band" x="24" y="340" width="952" height="190" rx="8"/>
+  <text class="dg-t dg-m dg-mut" x="40" y="368" font-size="13" font-weight="500" letter-spacing="1">ON EVERY PROPOSAL, AT THE GOVERNANCE PLATFORM</text>
+  <g>
+    <rect class="dg-card" x="40" y="384" width="200" height="128" rx="8"/>
+    <text class="dg-t dg-m dg-acc" x="58" y="414" font-size="14" font-weight="500">04</text>
+    <text class="dg-t" x="58" y="444" font-size="18" font-weight="600">Connect wallet</text>
+    <text class="dg-t dg-mut" x="58" y="470" font-size="14">Browser wallet or</text>
+    <text class="dg-t dg-mut" x="58" y="490" font-size="14">WalletConnect</text>
+  </g>
+  <path class="dg-ln" d="M242 448 H276" marker-end="url(#d1-ah)"/>
+  <g>
+    <rect class="dg-card" x="280" y="384" width="200" height="128" rx="8" style="stroke:#EF5350"/>
+    <text class="dg-t dg-m dg-acc" x="298" y="414" font-size="14" font-weight="500">05</text>
+    <text class="dg-t" x="298" y="444" font-size="18" font-weight="600">Eligibility check</text>
+    <text class="dg-t dg-mut" x="298" y="470" font-size="14">Verified at the</text>
+    <text class="dg-t dg-mut" x="298" y="490" font-size="14">snapshot block?</text>
+  </g>
+  <path class="dg-ln" d="M482 448 H516" marker-end="url(#d1-ah)"/>
+  <text class="dg-t dg-m dg-ok" x="499" y="438" font-size="13" font-weight="500" text-anchor="middle">YES</text>
+  <g>
+    <rect class="dg-card" x="520" y="384" width="200" height="128" rx="8"/>
+    <text class="dg-t dg-m dg-acc" x="538" y="414" font-size="14" font-weight="500">06</text>
+    <text class="dg-t" x="538" y="444" font-size="18" font-weight="600">Review and sign</text>
+    <text class="dg-t dg-mut" x="538" y="470" font-size="14">A signature, not a</text>
+    <text class="dg-t dg-mut" x="538" y="490" font-size="14">transaction. No gas</text>
+  </g>
+  <path class="dg-ln" d="M722 448 H756" marker-end="url(#d1-ah)"/>
+  <g>
+    <rect class="dg-card" x="760" y="384" width="200" height="128" rx="8"/>
+    <text class="dg-t dg-m dg-ok" x="778" y="414" font-size="14" font-weight="500">07 ✓</text>
+    <text class="dg-t" x="778" y="444" font-size="18" font-weight="600">Vote recorded</text>
+    <text class="dg-t dg-mut" x="778" y="470" font-size="14">IPFS receipt follows.</text>
+    <text class="dg-t dg-mut" x="778" y="490" font-size="14">Change it until close</text>
+  </g>
+
+  <!-- No branch -->
+  <path class="dg-ln" d="M380 514 V548" marker-end="url(#d1-ah)"/>
+  <text class="dg-t dg-m dg-acc" x="392" y="538" font-size="13" font-weight="500">NO</text>
+  <rect class="dg-card" x="280" y="552" width="680" height="50" rx="8"/>
+  <text class="dg-t" x="300" y="583" font-size="16"><tspan font-weight="600" class="dg-acc">✕ Not eligible for this proposal.</tspan><tspan class="dg-mut"> It can vote on proposals whose snapshot comes later.</tspan></text>
+
+  <text class="dg-t dg-m dg-mut" x="40" y="632" font-size="12" letter-spacing="0.6">LAST VERIFIED 25 OCT 2026 · ACCESS.REDBELLY.NETWORK · REDBELLY-GOVERNANCE.VERCEL.APP</text>
+</svg>

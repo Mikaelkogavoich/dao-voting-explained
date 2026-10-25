@@ -1,0 +1,8 @@
+{
+  "verified": "25 October 2026",
+  "verified_caps": "25 OCT 2026",
+  "native_proposals": 10,
+  "gap_min_s": 15,
+  "gap_max_s": 162,
+  "addresses_per_credential": 10
+}

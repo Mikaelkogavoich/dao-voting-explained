@@ -1,0 +1,156 @@
+{
+  "ran_at": "2026-10-25 05:35 UTC",
+  "live": true,
+  "results": [
+    {
+      "group": "Deliverables",
+      "check": "Guide, PDF, diagrams (SVG source and PNG) all present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Deliverables",
+      "check": "Every diagram is placed in the guide and linked",
+      "ok": true,
+      "detail": "3 of 3 placed"
+    },
+    {
+      "group": "Diagrams",
+      "check": "01-path-to-vote.svg: title, description, dated last-verified line, no external files",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Diagrams",
+      "check": "02-snapshot-timeline.svg: title, description, dated last-verified line, no external files",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Diagrams",
+      "check": "03-wallets-and-votes.svg: title, description, dated last-verified line, no external files",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Brand voice",
+      "check": "No em dashes or en dashes in any file",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Brand voice",
+      "check": "No emoji (only the board's check and cross glyphs)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Brief",
+      "check": "Short: guide body under 1,800 words",
+      "ok": true,
+      "detail": "1621 words"
+    },
+    {
+      "group": "Failure criteria",
+      "check": "No rule described from Snapshot or older setups",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Failure criteria",
+      "check": "No recommendations to change the voting rules",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Failure criteria",
+      "check": "No personal credit in the guide, diagrams or PDF",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Consistency",
+      "check": "Measured numbers on the page match tools/data.json",
+      "ok": true,
+      "detail": "10 proposals published; 15 to 162 seconds"
+    },
+    {
+      "group": "Platform text",
+      "check": "All 29 interface strings the guide quotes are in the live platform",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Platform code",
+      "check": "One credential enables up to about 10 addresses",
+      "ok": true,
+      "detail": "constant = 10"
+    },
+    {
+      "group": "Platform code",
+      "check": "A vote signs only from, space, proposal, choice, reason, timestamp",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Platform code",
+      "check": "Identity registry is set for chain 151, so new proposals are verified-only",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Platform code",
+      "check": "Voting opens at publication and runs for the set number of days",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "API",
+      "check": "Native proposal count matches the guide",
+      "ok": true,
+      "detail": "10 native proposals now (guide says 10)"
+    },
+    {
+      "group": "API",
+      "check": "Every proposal since 29 Aug 2026 is verified wallets only",
+      "ok": true,
+      "detail": "5 proposals"
+    },
+    {
+      "group": "API",
+      "check": "DAO votes since approval use Verified identity",
+      "ok": true,
+      "detail": "Proposal Withdrawal Policy, Proposal Resubmission Policy"
+    },
+    {
+      "group": "Chain",
+      "check": "Snapshot block is 15 to 162 s before voting opens",
+      "ok": true,
+      "detail": "measured 15 to 162 s"
+    },
+    {
+      "group": "API",
+      "check": "A verified voter has exactly 1 vote on the latest proposal",
+      "ok": true,
+      "detail": "{\"power\": 1, \"strategy\": \"verified-identity\", \"snapshotBlock\": 3208192}"
+    },
+    {
+      "group": "API",
+      "check": "An unverified wallet has 0 power and sees the credential message",
+      "ok": true,
+      "detail": "{\"power\": 0, \"blocked\": true, \"unavailable\": \"This proposal is open to identity-verified wallets only. This address does not hold a Receptor credential on Redbelly.\"}"
+    },
+    {
+      "group": "Chain + API",
+      "check": "A wallet enabled after a snapshot is verified today but has 0 power on that proposal",
+      "ok": true,
+      "detail": "enabled 3 blocks after the snapshot of Proposal Resubmission Policy"
+    },
+    {
+      "group": "Redbelly Access",
+      "check": "Access portal text the guide relies on is live",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

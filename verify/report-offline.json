@@ -1,0 +1,78 @@
+{
+  "ran_at": "2026-10-25 05:37 UTC",
+  "live": false,
+  "results": [
+    {
+      "group": "Deliverables",
+      "check": "Guide, PDF, diagrams (SVG source and PNG) all present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Deliverables",
+      "check": "Every diagram is placed in the guide and linked",
+      "ok": true,
+      "detail": "3 of 3 placed"
+    },
+    {
+      "group": "Diagrams",
+      "check": "01-path-to-vote.svg: title, description, dated last-verified line, no external files",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Diagrams",
+      "check": "02-snapshot-timeline.svg: title, description, dated last-verified line, no external files",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Diagrams",
+      "check": "03-wallets-and-votes.svg: title, description, dated last-verified line, no external files",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Brand voice",
+      "check": "No em dashes or en dashes in any file",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Brand voice",
+      "check": "No emoji (only the board's check and cross glyphs)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Brief",
+      "check": "Short: guide body under 1,800 words",
+      "ok": true,
+      "detail": "1621 words"
+    },
+    {
+      "group": "Failure criteria",
+      "check": "No rule described from Snapshot or older setups",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Failure criteria",
+      "check": "No recommendations to change the voting rules",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Failure criteria",
+      "check": "No personal credit in the guide, diagrams or PDF",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "Consistency",
+      "check": "Measured numbers on the page match tools/data.json",
+      "ok": true,
+      "detail": "10 proposals published; 15 to 162 seconds"
+    }
+  ]
+}
